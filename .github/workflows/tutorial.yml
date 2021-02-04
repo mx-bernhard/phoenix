@@ -38,12 +38,16 @@ jobs:
         docker push $ACR_NAME/aci-helloworld:latest
         echo "Done"
     - name: 'Deploy to Azure Container Instances'
+      env:
+        ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
+        ACR_PASSWORD: ${{ secrets.ACR_PASSWORD }}
+        ACR_NAME: ${{ secrets.ACR_NAME }}
       uses: 'azure/aci-deploy@v1'
       with:
         resource-group: tutorial-rg
         dns-name-label: urlforurlforurl
         image: $ACR_NAME/aci-helloworld:${{ github.sha }}
-        registry-username: ${{ secrets.ACR_USERNAME }}
-        registry-password: ${{ secrets.ACR_PASSWORD }}
+        registry-username: $ACR_USERNAME
+        registry-password: $ACR_PASSWORD
         name: aci-helloworld-container
         location: 'west us'        
