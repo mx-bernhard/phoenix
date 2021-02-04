@@ -4,7 +4,7 @@ This sample is a very simple NodeJS application used to demonstrate [Azure Conta
 
 The packaged version of the application is [available on Docker Hub](https://hub.docker.com/r/microsoft/aci-helloworld/).
 
-
+test
 # Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
