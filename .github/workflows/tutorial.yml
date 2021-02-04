@@ -46,8 +46,8 @@ jobs:
       with:
         resource-group: tutorial-rg
         dns-name-label: urlforurlforurl
-        image: $ACR_NAME/aci-helloworld:${{ github.sha }}
-        registry-username: $ACR_USERNAME
-        registry-password: $ACR_PASSWORD
+        image: ${{ secrets.ACR_NAME }}/aci-helloworld:${{ github.sha }}
+        registry-username: ${{ secrets.ACR_USERNAME }}
+        registry-password: ${{ secrets.ACR_PASSWORD }}
         name: aci-helloworld-container
         location: 'west us'        
