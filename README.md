@@ -13,7 +13,7 @@ After the workshop you should have hands on experience with:
 6. Learn about implementing GitOps using Flux and GitHub actions.
 
 # ACTIVATION OF AZURE PASS: https://www.microsoftazurepass.com/
-test
+
 ## How should the end result look like?
 ![](/img/challenge6.png)
 
