@@ -45,7 +45,7 @@ jobs:
       uses: 'azure/aci-deploy@v1'
       with:
         resource-group: tutorial-rg
-        dns-name-label: urlforurlforurl
+        dns-name-label: mx-schafft-das
         image: ${{ secrets.ACR_NAME }}/aci-helloworld:${{ github.sha }}
         registry-login-server: ${{ secrets.ACR_NAME }}
         registry-username: ${{ secrets.ACR_USERNAME }}
