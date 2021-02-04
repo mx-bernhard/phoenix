@@ -1,4 +1,4 @@
-name: acr-aci-helloworld
+name: acr-aci-helloworld-meins
 
 on: 
   push:
