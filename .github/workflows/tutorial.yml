@@ -1,5 +1,12 @@
-- uses: azure/docker-login@v1
-  with:
-    login-server: contoso.azurecr.io
-    username: ${{ secrets.ACR_USERNAME }}
-    password: ${{ secrets.ACR_PASSWORD }}
+name: tutorial
+on: [push]
+jobs:
+  build-tutorial:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: azure/docker-login@v1
+        with:
+          login-server: sterilizefleshedbonelike.azurecr.io
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+        
