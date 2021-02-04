@@ -13,6 +13,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}      
     - uses: azure/docker-login@v1
       with:
         login-server: ${{ secrets.ACR_NAME }}
@@ -33,3 +37,13 @@ jobs:
         docker push $ACR_NAME/aci-helloworld:${{ github.sha }}
         docker push $ACR_NAME/aci-helloworld:latest
         echo "Done"
+    - name: 'Deploy to Azure Container Instances'
+      uses: 'azure/aci-deploy@v1'
+      with:
+        resource-group: tutorial-rg
+        dns-name-label: url-for-container
+        image: $ACR_NAME/aci-helloworld:${{ github.sha }}
+        registry-username: ${{ secrets.ACR_USERNAME }}
+        registry-password: ${{ secrets.ACR_PASSWORD }}
+        name: aci-helloworld-container
+        location: 'west us'        
