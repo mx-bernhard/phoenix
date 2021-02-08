@@ -12,18 +12,18 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '18e34443-13de-429b-84e3-7ee6e38399bb'
-  imageRepository: 'jscalcbackend'
+  imageRepository: 'jscalcfrontend'
   containerRegistry: 'sterilizefleshedbonelike.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/apps/js-calc-backend/Dockerfile'
+  dockerfilePath: '$(Build.SourcesDirectory)/apps/js-calc-frontend/Dockerfile'
   tag: '$(Build.BuildId)'
-  
+
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
 stages:
 - stage: Build
   displayName: Build and push stage
-  jobs:  
+  jobs:
   - job: Build
     displayName: Build
     pool:
