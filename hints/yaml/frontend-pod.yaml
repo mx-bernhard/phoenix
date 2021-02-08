@@ -8,18 +8,13 @@ metadata:
 spec:
   containers:
     - name: calcfrontend
-      image: dzregistry.azurecr.io/calc/calc-frontend:latest
+      image: sterilizefleshedbonelike.azurecr.io/js-calc-frontend:v2
       ports:
         - containerPort: 8080
           name: calcfrontend
           protocol: TCP
-      env:       
+      env:
         - name: "ENDPOINT"
           value: "calcbackendsvc"
-        - name: "INSTRUMENTATIONKEY"
-          valueFrom:
-            secretKeyRef:
-              name: appinsightsecret
-              key: appinsightskey
         - name: "PORT"
-          value: "8080"              
+          value: "8080"
