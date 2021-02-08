@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 name: publish-deployment.yaml
 trigger:
-- main
+- master
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -12,8 +12,8 @@ pool:
 steps:
 - task: PublishBuildArtifacts@1
   inputs:
-    pathToPublish: 'deployments/deployment.yaml' 
-    artifactName: 'deployment.yaml' 
+    pathToPublish: 'deployments/deployment.yaml'
+    artifactName: 'deployment.yaml'
     publishLocation: 'Container' # Options: container, filePath
     #targetPath: # Required when publishLocation == FilePath
     #parallel: false # Optional
