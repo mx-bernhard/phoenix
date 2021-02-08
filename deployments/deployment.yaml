@@ -53,6 +53,12 @@ spec:
               value: "8080"
             - name: "SOMETHING"
               value: "Dennis"
+            - name: "INSTRUMENTATIONKEY"
+              valueFrom:
+                secretKeyRef:
+                  name: appinsightsecret
+                  key: appinsightskey
+
 ---
 kind: Service
 apiVersion: v1
@@ -107,3 +113,9 @@ spec:
               value: "8080"
             - name: "SOMETHING"
               value: "Dennis"
+            - name: "INSTRUMENTATIONKEY"
+              valueFrom:
+                secretKeyRef:
+                  name: appinsightsecret
+                  key: appinsightskey
+
