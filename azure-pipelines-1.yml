@@ -14,7 +14,7 @@ variables:
   imageRepository: 'js-calc-backend'
   containerRegistry: 'sterilizefleshedbonelike.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/apps/js-calc-backend/Dockerfile'
-  tag: '$(Build.BuildId)'
+  tag: 'latest'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
