@@ -1,0 +1,109 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: calc-frontend-svc
+  labels:
+    name: calc-frontend-svc
+    app: calculator
+spec:
+  selector:
+    name: js-calc-frontend
+    app: calculator
+  ports:
+    - port: 80
+      name: calc-frontend
+      targetPort: calc-frontend
+      protocol: TCP
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: js-calc-frontend-depl
+  labels:
+    name: js-calc-frontend
+    app: calculator
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: js-calc-frontend
+      app: calculator
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+      metadata:
+        labels:
+          name: js-calc-frontend
+          app: calculator
+      spec:
+        containers:
+          - name: calcfrontend
+            image: sterilizefleshedbonelike.azurecr.io/js-calc-frontend:v2
+            ports:
+              - containerPort: 8080
+                name: calc-frontend
+                protocol: TCP
+            env:
+            - name: "ENDPOINT"
+              value: "calc-backend-svc"
+            - name: "PORT"
+              value: "8080"
+            - name: "SOMETHING"
+              value: "Dennis"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: calc-backend-svc
+  labels:
+    name: calc-backend-svc
+    app: calculator
+spec:
+  selector:
+    name: js-calc-backend
+    app: calculator
+  ports:
+    - port: 80
+      name: calc-backend
+      targetPort: calc-backend
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: js-calc-backend-depl
+  labels:
+    name: js-calc-backend
+    app: calculator
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: js-calc-backend
+      app: calculator
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        name: js-calc-backend
+        app: calculator
+    spec:
+      containers:
+        - name: calcbackend
+          image: sterilizefleshedbonelike.azurecr.io/js-calc-backend:v2
+          ports:
+            - containerPort: 8080
+              name: calc-backend
+              protocol: TCP
+          env:
+            - name: "PORT"
+              value: "8080"
+            - name: "SOMETHING"
+              value: "Dennis"
