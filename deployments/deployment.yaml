@@ -41,7 +41,7 @@ spec:
       spec:
         containers:
           - name: calcfrontend
-            image: sterilizefleshedbonelike.azurecr.io/js-calc-frontend:v2
+            image: sterilizefleshedbonelike.azurecr.io/js-calc-frontend:latest
             ports:
               - containerPort: 8080
                 name: calc-frontend
@@ -97,7 +97,7 @@ spec:
     spec:
       containers:
         - name: calcbackend
-          image: sterilizefleshedbonelike.azurecr.io/js-calc-backend:v2
+          image: sterilizefleshedbonelike.azurecr.io/js-calc-backend:latest
           ports:
             - containerPort: 8080
               name: calc-backend
